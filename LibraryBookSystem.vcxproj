@@ -125,7 +125,7 @@
   <ItemGroup>
     <ClCompile Include="Book.cpp" />
     <ClCompile Include="Library.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="test_main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Book.h" />
