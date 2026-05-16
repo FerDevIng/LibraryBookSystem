@@ -156,13 +156,107 @@ int main()
 
 
     // ------------------------------------------------------------
-    // TEST 5: Sort function implementation
+    // TEST 5: Book arrays in different ISBN orders
+    // Purpose:
+    // This test creates three arrays with three Book objects each.
+    // The arrays store books in ascending, descending, and mixed
+    // ISBN order.
+    // ------------------------------------------------------------
+
+    cout << "TEST 5: Book arrays in different ISBN orders" << endl;
+    cout << "Expected result: All valid books should be saved and displayed." << endl;
+    cout << "Actual result:" << endl << endl;
+
+    // This array stores books in ascending ISBN order.
+    Book ascendingBooks[3];
+
+    // This array stores books in descending ISBN order.
+    Book descendingBooks[3];
+
+    // This array stores books in mixed ISBN order.
+    Book mixedBooks[3];
+
+    // Add valid books to the ascending array.
+    bool ascendingBook1 = ascendingBooks[0].setBookDetails("Book A", "Author A", "1000000000", true, "01/03/2026");
+    bool ascendingBook2 = ascendingBooks[1].setBookDetails("Book B", "Author B", "2000000000", true, "01/03/2026");
+    bool ascendingBook3 = ascendingBooks[2].setBookDetails("Book C", "Author C", "3000000000", true, "01/03/2026");
+
+    // Add valid books to the descending array.
+    bool descendingBook1 = descendingBooks[0].setBookDetails("Book C", "Author C", "3000000000", true, "01/03/2026");
+    bool descendingBook2 = descendingBooks[1].setBookDetails("Book B", "Author B", "2000000000", true, "01/03/2026");
+    bool descendingBook3 = descendingBooks[2].setBookDetails("Book A", "Author A", "1000000000", true, "01/03/2026");
+
+    // Add valid books to the mixed array.
+    bool mixedBook1 = mixedBooks[0].setBookDetails("Book B", "Author B", "2000000000", true, "01/03/2026");
+    bool mixedBook2 = mixedBooks[1].setBookDetails("Book A", "Author A", "1000000000", true, "01/03/2026");
+    bool mixedBook3 = mixedBooks[2].setBookDetails("Book C", "Author C", "3000000000", true, "01/03/2026");
+
+    cout << "Ascending books:" << endl;
+
+    // Only display each book if the valid information was saved.
+    if (ascendingBook1)
+    {
+        ascendingBooks[0].displayBookDetails();
+    }
+
+    if (ascendingBook2)
+    {
+        ascendingBooks[1].displayBookDetails();
+    }
+
+    if (ascendingBook3)
+    {
+        ascendingBooks[2].displayBookDetails();
+    }
+
+    cout << "Descending books:" << endl;
+
+    // Only display each book if the valid information was saved.
+    if (descendingBook1)
+    {
+        descendingBooks[0].displayBookDetails();
+    }
+
+    if (descendingBook2)
+    {
+        descendingBooks[1].displayBookDetails();
+    }
+
+    if (descendingBook3)
+    {
+        descendingBooks[2].displayBookDetails();
+    }
+
+    cout << "Mixed books:" << endl;
+
+    // Only display each book if the valid information was saved.
+    if (mixedBook1)
+    {
+        mixedBooks[0].displayBookDetails();
+    }
+
+    if (mixedBook2)
+    {
+        mixedBooks[1].displayBookDetails();
+    }
+
+    if (mixedBook3)
+    {
+        mixedBooks[2].displayBookDetails();
+    }
+
+    cout << "TEST 5 completed." << endl;
+    cout << "----------------------------------------" << endl << endl;
+
+
+    // ------------------------------------------------------------
+    // TEST 6: Sort function implementation
     // Purpose:
     // This test checks if the Library class can initialise books
     // and run the sorting function.
     // ------------------------------------------------------------
 
-    cout << "TEST 5: Sort function implementation" << endl;
+    cout << "TEST 6: Sort function implementation" << endl;
 
     Library testLibrary;
 
@@ -177,7 +271,7 @@ int main()
     testLibrary.displayAllBooks();
 
     cout << "Expected result: Books should be displayed in ascending order by ISBN." << endl;
-    cout << "TEST 5 completed." << endl;
+    cout << "TEST 6 completed." << endl;
     cout << "----------------------------------------" << endl << endl;
 
     cout << "All initialisation and sorting tests completed." << endl;
