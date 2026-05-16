@@ -27,7 +27,7 @@ int main()
 
     Book correctBook;
 
-    correctBook.setBookDetails(
+    bool test1Result = correctBook.setBookDetails(
         "Clean Code",
         "Robert C. Martin",
         "9780132350884",
@@ -35,7 +35,16 @@ int main()
         "01/03/2026"
     );
 
-    correctBook.displayBookDetails();
+    // If setBookDetails returns true, the valid book details were saved.
+    if (test1Result)
+    {
+        cout << "PASS: Correct book information was accepted." << endl;
+        correctBook.displayBookDetails();
+    }
+    else
+    {
+        cout << "FAIL: Correct book information was rejected." << endl;
+    }
 
     cout << "TEST 1 completed." << endl;
     cout << "----------------------------------------" << endl << endl;
@@ -53,7 +62,7 @@ int main()
 
     Book incorrectBook1;
 
-    incorrectBook1.setBookDetails(
+    bool test2Result = incorrectBook1.setBookDetails(
         "",
         "Robert C. Martin",
         "9780132350884",
@@ -61,9 +70,17 @@ int main()
         "01/03/2026"
     );
 
-    incorrectBook1.displayBookDetails();
+    // If setBookDetails returns false, the empty title was correctly rejected.
+    if (!test2Result)
+    {
+        cout << "PASS: Empty title was rejected." << endl;
+    }
+    else
+    {
+        cout << "FAIL: Empty title was accepted." << endl;
+        incorrectBook1.displayBookDetails();
+    }
 
-    cout << "Observation: The current program stores the book even when the title is empty." << endl;
     cout << "TEST 2 completed." << endl;
     cout << "----------------------------------------" << endl << endl;
 
@@ -80,7 +97,7 @@ int main()
 
     Book incorrectBook2;
 
-    incorrectBook2.setBookDetails(
+    bool test3Result = incorrectBook2.setBookDetails(
         "Clean Code",
         "",
         "9780132350884",
@@ -88,9 +105,17 @@ int main()
         "01/03/2026"
     );
 
-    incorrectBook2.displayBookDetails();
+    // If setBookDetails returns false, the empty author was correctly rejected.
+    if (!test3Result)
+    {
+        cout << "PASS: Empty author was rejected." << endl;
+    }
+    else
+    {
+        cout << "FAIL: Empty author was accepted." << endl;
+        incorrectBook2.displayBookDetails();
+    }
 
-    cout << "Observation: The current program stores the book even when the author is empty." << endl;
     cout << "TEST 3 completed." << endl;
     cout << "----------------------------------------" << endl << endl;
 
@@ -107,7 +132,7 @@ int main()
 
     Book incorrectBook3;
 
-    incorrectBook3.setBookDetails(
+    bool test4Result = incorrectBook3.setBookDetails(
         "Clean Code",
         "Robert C. Martin",
         "ABC123",
@@ -115,9 +140,17 @@ int main()
         "01/03/2026"
     );
 
-    incorrectBook3.displayBookDetails();
+    // If setBookDetails returns false, the invalid ISBN was correctly rejected.
+    if (!test4Result)
+    {
+        cout << "PASS: Invalid ISBN was rejected." << endl;
+    }
+    else
+    {
+        cout << "FAIL: Invalid ISBN was accepted." << endl;
+        incorrectBook3.displayBookDetails();
+    }
 
-    cout << "Observation: The current program stores the book even when the ISBN format is invalid." << endl;
     cout << "TEST 4 completed." << endl;
     cout << "----------------------------------------" << endl << endl;
 
