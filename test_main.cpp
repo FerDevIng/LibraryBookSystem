@@ -1,8 +1,8 @@
 #include <iostream>
 
-// These header files import the class definitions from the main application.
-// Book.h allows this test file to create and test Book objects.
-// Library.h allows this test file to create and test the Library object and sorting function.
+// Import the class header files from the main application.
+// Book.h allows this test application to use the Book class.
+// Library.h allows this test application to use the Library class and sort function.
 #include "Book.h"
 #include "Library.h"
 
@@ -10,28 +10,24 @@ using namespace std;
 
 int main()
 {
-    // Display the title of the test application.
     cout << "========================================" << endl;
     cout << " Library Book System - Test Application " << endl;
     cout << "========================================" << endl << endl;
 
     // ------------------------------------------------------------
-    // TEST 1: Test the Book class implementation
+    // TEST 1: Correct book information initialisation
     // Purpose:
-    // This test creates one Book object and displays its details.
-    // This proves that the Book class implementation can be imported
-    // and used inside the test application.
+    // This test checks if the program can create and display a book
+    // with complete and correct information.
     // ------------------------------------------------------------
 
-    cout << "TEST 1: Book class implementation" << endl;
-    cout << "Expected result: The book details should display correctly." << endl;
+    cout << "TEST 1: Correct book information initialisation" << endl;
+    cout << "Expected result: The book should display all details correctly." << endl;
     cout << "Actual result:" << endl;
 
-    // Create a Book object using the default constructor.
-    Book testBook;
+    Book correctBook;
 
-    // Add correct book information using the setBookDetails method.
-    testBook.setBookDetails(
+    correctBook.setBookDetails(
         "Clean Code",
         "Robert C. Martin",
         "9780132350884",
@@ -39,65 +35,119 @@ int main()
         "01/03/2026"
     );
 
-    // Display the book details to check if the data was saved correctly.
-    testBook.displayBookDetails();
+    correctBook.displayBookDetails();
 
     cout << "TEST 1 completed." << endl;
     cout << "----------------------------------------" << endl << endl;
 
 
     // ------------------------------------------------------------
-    // TEST 2: Test the Library class implementation
+    // TEST 2: Incorrect book information - empty title
     // Purpose:
-    // This test creates a Library object and displays all books.
-    // This proves that the Library class implementation can be imported
-    // and used inside the test application.
+    // This test checks what happens when the title field is empty.
     // ------------------------------------------------------------
 
-    cout << "TEST 2: Library class implementation" << endl;
-    cout << "Expected result: The five predefined books should display." << endl;
+    cout << "TEST 2: Incorrect book information - Empty title" << endl;
+    cout << "Expected result: The program should identify that the title is missing." << endl;
     cout << "Actual result:" << endl;
 
-    // Create a Library object.
-    // The constructor automatically calls initialiseBooks().
-    Library testLibrary;
+    Book incorrectBook1;
 
-    // Display all books stored in the library.
-    testLibrary.displayAllBooks();
+    incorrectBook1.setBookDetails(
+        "",
+        "Robert C. Martin",
+        "9780132350884",
+        true,
+        "01/03/2026"
+    );
 
+    incorrectBook1.displayBookDetails();
+
+    cout << "Observation: The current program stores the book even when the title is empty." << endl;
     cout << "TEST 2 completed." << endl;
     cout << "----------------------------------------" << endl << endl;
 
 
     // ------------------------------------------------------------
-    // TEST 3: Test the sort function implementation
+    // TEST 3: Incorrect book information - empty author
     // Purpose:
-    // This test calls the sortBookData() method from the Library class.
-    // This proves that the sort function implementation can be imported
-    // and executed from the test application.
+    // This test checks what happens when the author field is empty.
     // ------------------------------------------------------------
 
-    cout << "TEST 3: Sort function implementation" << endl;
+    cout << "TEST 3: Incorrect book information - Empty author" << endl;
+    cout << "Expected result: The program should identify that the author is missing." << endl;
+    cout << "Actual result:" << endl;
+
+    Book incorrectBook2;
+
+    incorrectBook2.setBookDetails(
+        "Clean Code",
+        "",
+        "9780132350884",
+        true,
+        "01/03/2026"
+    );
+
+    incorrectBook2.displayBookDetails();
+
+    cout << "Observation: The current program stores the book even when the author is empty." << endl;
+    cout << "TEST 3 completed." << endl;
+    cout << "----------------------------------------" << endl << endl;
+
+
+    // ------------------------------------------------------------
+    // TEST 4: Incorrect book information - invalid ISBN
+    // Purpose:
+    // This test checks what happens when the ISBN contains invalid characters.
+    // ------------------------------------------------------------
+
+    cout << "TEST 4: Incorrect book information - Invalid ISBN" << endl;
+    cout << "Expected result: The program should identify that the ISBN is invalid." << endl;
+    cout << "Actual result:" << endl;
+
+    Book incorrectBook3;
+
+    incorrectBook3.setBookDetails(
+        "Clean Code",
+        "Robert C. Martin",
+        "ABC123",
+        true,
+        "01/03/2026"
+    );
+
+    incorrectBook3.displayBookDetails();
+
+    cout << "Observation: The current program stores the book even when the ISBN format is invalid." << endl;
+    cout << "TEST 4 completed." << endl;
+    cout << "----------------------------------------" << endl << endl;
+
+
+    // ------------------------------------------------------------
+    // TEST 5: Sort function implementation
+    // Purpose:
+    // This test checks if the Library class can initialise books
+    // and run the sorting function.
+    // ------------------------------------------------------------
+
+    cout << "TEST 5: Sort function implementation" << endl;
+
+    Library testLibrary;
 
     cout << "Books before sorting:" << endl;
     testLibrary.displayAllBooks();
 
     cout << endl;
 
-    // Call the sorting function from the Library class.
     testLibrary.sortBookData();
 
-    cout << endl;
-    cout << "Books after sorting by ISBN:" << endl;
+    cout << "Books after sorting:" << endl;
     testLibrary.displayAllBooks();
 
-    cout << "Expected result: The books should be organised in ascending ISBN order." << endl;
-    cout << "TEST 3 completed." << endl;
+    cout << "Expected result: Books should be displayed in ascending order by ISBN." << endl;
+    cout << "TEST 5 completed." << endl;
     cout << "----------------------------------------" << endl << endl;
 
-
-    // End of the test application.
-    cout << "All Requirement 1 tests completed." << endl;
+    cout << "All initialisation and sorting tests completed." << endl;
 
     return 0;
 }

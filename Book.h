@@ -24,13 +24,18 @@ private:
     // Stores the date when the book was added to the library.
     std::string dateAdded;
 
+    // This helper method checks if an ISBN is valid.
+    bool isValidISBN(std::string bookISBN) const;
+
 public:
     // Default constructor.
     // It creates an empty Book object with default values.
     Book();
 
     // This method sets all the book details.
-    void setBookDetails(
+    // It returns true if the details are valid and saved.
+    // It returns false if the details are not valid.
+    bool setBookDetails(
         std::string bookTitle,
         std::string bookAuthor,
         std::string bookISBN,

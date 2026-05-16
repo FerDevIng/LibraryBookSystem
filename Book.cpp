@@ -13,7 +13,8 @@ Book::Book()
 }
 
 // This method assigns values to the book attributes.
-void Book::setBookDetails(
+// It checks the title, author, and ISBN before saving the details.
+bool Book::setBookDetails(
     std::string bookTitle,
     std::string bookAuthor,
     std::string bookISBN,
@@ -21,11 +22,60 @@ void Book::setBookDetails(
     std::string bookDateAdded
 )
 {
+    // Do not save the details if the title is empty.
+    if (bookTitle.empty())
+    {
+        return false;
+    }
+
+    // Do not save the details if the author is empty.
+    if (bookAuthor.empty())
+    {
+        return false;
+    }
+
+    // Do not save the details if the ISBN is empty or has the wrong format.
+    if (!isValidISBN(bookISBN))
+    {
+        return false;
+    }
+
+    // The details are valid, so they can now be saved.
     title = bookTitle;
     author = bookAuthor;
     isbn = bookISBN;
     available = bookAvailable;
     dateAdded = bookDateAdded;
+
+    return true;
+}
+
+// This helper method checks that the ISBN contains only numbers
+// and is either 10 or 13 digits long.
+bool Book::isValidISBN(std::string bookISBN) const
+{
+    // ISBN cannot be empty.
+    if (bookISBN.empty())
+    {
+        return false;
+    }
+
+    // ISBN must be either 10 or 13 digits long.
+    if (bookISBN.length() != 10 && bookISBN.length() != 13)
+    {
+        return false;
+    }
+
+    // Check each character to make sure it is a number.
+    for (int i = 0; i < bookISBN.length(); i++)
+    {
+        if (bookISBN[i] < '0' || bookISBN[i] > '9')
+        {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 // This method displays the book details in the console.
